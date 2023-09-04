@@ -67,6 +67,7 @@ function displayUsersAsATable(users) {
 //     border: 1px solid;
 //   } 
 
+
 // two 
 
 function search() {    
@@ -217,3 +218,4 @@ localStorage.location = "Earth";
 var lastName = localStorage.lastName;
 var firstName = localStorage.firstName;
 var location = localStorage.location;
+

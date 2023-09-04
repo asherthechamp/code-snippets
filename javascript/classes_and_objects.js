@@ -642,6 +642,7 @@ function testCollisionBallWithWalls(b) {
 //   float:left;
 // }
 
+
 // six 
 
 class Contact {
@@ -728,3 +729,4 @@ cm.printContactsToConsole();
 console.log("--- sorting contacts ---");
 cm.sort();
 cm.printContactsToConsole();
+
