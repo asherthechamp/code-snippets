@@ -1,0 +1,62 @@
+#one {% if user.is_authenticated %}
+<div class="rightalign">
+  <div class="dropdown">
+    <button class="dropbtn">{{user.first_name}}</button>
+    <div class="dropdown-content">
+      <a href="{% url 'onlinecourse:logout' %}">Logout</a>
+    </div>
+  </div>
+</div>
+{% endif %} #two {% if user.is_authenticated %}
+<div class="rightalign">
+  <div class="dropdown">
+    <button class="dropbtn">{{user.first_name}}</button>
+    <div class="dropdown-content">
+      <a href="{% url 'onlinecourse:logout' %}">Logout</a>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="rightalign">
+  <div class="dropdown">
+    <button class="dropbtn">Visitor</button>
+    <div class="dropdown-content">
+      <a href="{% url 'onlinecourse:login' %}">Login</a>
+    </div>
+  </div>
+</div>
+{% endif %} #three
+
+<form action="{% url 'onlinecourse:login' %}" method="post">
+  {% csrf_token %}
+  <div class="container">
+    <h1>Login</h1>
+    <label for="username"><b>User Name</b></label>
+    <input
+      type="text"
+      placeholder="Enter User Name: "
+      name="username"
+      required
+    />
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password: " name="psw" required />
+    <div>
+      <button class="button" type="submit">Login</button>
+    </div>
+  </div>
+</form>
+
+// logout views def logout_request(request): # Get the user object based on
+session id in request print("Log out the user
+`{}`".format(request.user.username)) # Logout user in the request
+logout(request) # Redirect user back to course list view return
+redirect('onlinecourse:popular_course_list') // login views def
+login_request(request): context = {} # Handles POST request if request.method ==
+"POST": # Get username and password from request.POST dictionary username =
+request.POST['username'] password = request.POST['psw'] # Try to check if
+provide credential can be authenticated user = authenticate(username=username,
+password=password) if user is not None: # If user is valid, call login method to
+login current user login(request, user) return
+redirect('onlinecourse:popular_course_list') else: # If not, return to login
+page again return render(request, 'onlinecourse/user_login.html', context) else:
+return render(request, 'onlinecourse/user_login.html', context)
